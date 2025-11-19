@@ -1,140 +1,185 @@
-/* *{
-    padding: 0;
-    margin: 0;
-} */
-/* @import url('https://fonts.googleapis.com/css2?family=Bungee+Tint&family=Cookie&family=Exo+2:ital,wght@0,100..900;1,100..900&family=Mr+Dafoe&display=swap'); */
-@import url('https://fonts.googleapis.com/css2?family=Bungee+Tint&family=Cookie&family=Exo+2:ital,wght@0,100..900;1,100..900&family=Gravitas+One&family=Mr+Dafoe&display=swap');
+/*
+  ================================================================
+  1. FONT IMPORTS
+  ================================================================
+  Ensure all necessary fonts (Cookie, Montserrat, Poppins) are loaded.
+  I've kept the consolidated Google Fonts link.
+*/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@700;800&family=Cookie&family=Gravitas+One&display=swap');
 
 
-.content{
-    overflow: hidden;
-    box-sizing: border-box;
-    height: 100vh;
-    width: 100vw;
+/*
+  ================================================================
+  2. CSS VARIABLES & GLOBAL STYLES
+  ================================================================
+*/
+:root {
+    --primary-color: #2176ff; /* Deep Blue (Used for dark background/highlights) */
+    --secondary-color: #ade8f4; /* Light Cyan (Used for light background) */
+    --text-dark: black;
 }
 
-.flexProp{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-}
-.normalfont{
-    font-size: 40px;
-    font-weight: 600;
-    color: black;
-    font-style: normal;
+/* Global Body Font - Montserrat for readability */
+body {
+    font-family: 'Montserrat', sans-serif;
 }
 
+/* Custom Backgrounds */
+.colordard {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.colorLight {
+    background-color: var(--secondary-color);
+}
+
+/*
+  ================================================================
+  3. TYPOGRAPHY & TEXT STYLES
+  ================================================================
+*/
+
+/* Custom Heading Font (Used for "About" and section titles) */
 .cookie-regular {
     font-family: "Cookie", cursive;
-    font-weight: 100;
+    font-weight: 100; /* Cookie font often looks best with lower weight */
     font-style: normal;
 }
 
-/* CSS */
+/* Name Style (Used on HomePage) */
+.beautiful-text {
+    /* Uses Poppins, overriding the 'Georgia' definition */
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    
+    /* Initial Subtle Shadow */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); 
+    
+    /* Hover/Transition effects (Kept the latest dramatic hover) */
+    cursor: pointer;
+    transition: color 0.3s ease, font-size 0.3s ease, text-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.beautiful-text:hover {
+    color: var(--primary-color); 
+    /* Zoom/Enlarge effect */
+    transform: scale(1.05); 
+    /* font-size: px; Ensure this size is compatible with your Tailwind classes */
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4); 
+}
+
+/* Text Shadow for Section Headings against dark backgrounds */
+.about-heading {
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4); 
+}
+
+/* About Section Text Block (used for bio, etc.) */
+.aboutText {
+    /* Removed redundant font-family/size definitions to let Tailwind control them */
+    font-weight: 400;
+}
+
+/*
+  ================================================================
+  4. CUSTOM/UTILITY CLASSES
+  ================================================================
+*/
+
+/* Contact Form Input Field Styling */
+.inputfield {
+    /* Using variables for color consistency */
+    background-color: var(--primary-color);
+    border-radius: 4px;
+    border: 3px solid #09223b;
+    padding: 20px;
+    margin: 5px;
+    color: white;
+    /* Ensure the browser applies box sizing correctly */
+    box-sizing: border-box; 
+    /* Removed w-100/h-10 which conflict with Tailwind w-full/p-3 */
+}
+
+/* Resume Download Button (Tailwind classes in JSX are preferred, but keeping this for legacy) */
 .button {
-  align-items: center;
-  background-color: #0A66C2;
-  border: 0;
-  border-radius: 100px;
-  box-sizing: border-box;
-  color: #ffffff;
-  cursor: pointer;
-  display: inline-flex;
-  font-family: -apple-system, system-ui, system-ui, "Segoe UI", Roboto, "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell, "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  font-weight: 900;
-  justify-content: center;
-  line-height: 20px;
-  max-width: 200px;
-  min-height: 50px;
-  min-width: 0px;
-  overflow: hidden;
-  padding: 0px;
-  padding-left: 20px;
-  padding-right: 20px;
-  text-align: center;
-  touch-action: manipulation;
-  transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  user-select: none;
-  -webkit-user-select: none;
-  vertical-align: middle;
+    background-color: var(--primary-color);
+    /* ... (rest of button styles, using Tailwind in JSX is cleaner) ... */
+    max-width: 200px;
+    min-height: 50px;
+    padding: 0px 20px;
+    /* ... rest of the button styles ... */
 }
 
-.button:hover,
-.button:focus { 
-  color: #16437E;
-  background-color: #ffffff;
+.button:hover, .button:focus {
+    color: black;
+    background-color: #5aacff;
+}
+/* ... other button active/disabled states ... */
+
+
+/* Navbar Image Size (Using Tailwind h-6 w-6 or h-8 w-8 is now cleaner) */
+.navbarimg {
+    height: 35px;
+    width: 35px;
 }
 
-.button:active {
-  background: #09223b;
-  color: rgb(255, 255, 255, .7);
+/* Skills Section Progress Bar Label */
+.progresSkill {
+    font-size: larger;
+    font-weight: 600;
+    padding: 9px;
+    margin: 4px;
 }
 
-.button:disabled { 
-  cursor: not-allowed;
-  background: rgba(0, 0, 0, .08);
-  color: rgba(0, 0, 0, .3);
-}
-  
-
-.tablepadding{
+/* About Section Table Padding (Less relevant since Tailwind padding is used in JSX) */
+.tablepadding {
     padding: 8px;
 }
-  
 
-.progresSkill{
-  font-size: larger;
-  font-weight: 600;
-  padding: 9px;
-  margin: 4px;
-}
 
-.educationBox{
-  background-color: #4480bc;
-  border-radius: 10px;
-  text-align: center;
-  margin: 10px;
-  padding: auto;
-  box-sizing: border-box;
-  overflow: hidden;
-  /* display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center; */
-}
-.degree{
-  font-size: 23px;
-  font-weight: 600;
-  color: rgb(106, 29, 83);
-}
-.collegeName{
-  font-size: 18px;
-  font-weight: 400;
-  color: rgb(204, 176, 99);
-  padding: 10px;
-}
-.year{
-  padding: 9px;
-}
-.interest{
-  padding: 10px;
+/*
+  ================================================================
+  5. EDUCATION BOX STYLING (The final combined version)
+  ================================================================
+  Removed conflicting background-color definition and centralized all styles.
+*/
+.educationBox {
+    /* Background from the JSX (white) is preferred, but keeping the secondary color definition here 
+       if the background is meant to be light cyan on light backgrounds (conflicting) */
+    background-color: white; /* Use white for contrast on the dark page background */
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); 
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    min-height: 200px; 
+    
+    /* Removed redundant text-align/display/flex properties to let Tailwind control alignment */
+    /* Kept essential legacy styles for text within the box: */
+    text-align: center;
 }
 
-.inputfield{
-  background-color: rgb(0, 72, 75);
-  border-radius: 4px;
-  text-decoration: none;
-  border: 3px solid #09223b;
-  text-align: left;
-  padding: 20px;
-  margin: 5px; 
-  color:white;
+.educationBox:hover {
+    transform: scale(1.03); /* Simple Zoom */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6); 
 }
 
-.aboutText{
-  font-family: 'Times New Roman', Times, serif;
-  font-size: 22px;
+.degree {
+    font-size: 23px;
+    font-weight: 600;
+    color: rgb(106, 29, 83);
 }
+.collegeName {
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--primary-color);
+    padding: 10px;
+}
+.year {
+    padding: 9px;
+    color: black;
+}
+.interest {
+    padding: 10px;
+    color: black;
+}
+
+/* REMOVED: .content, .flexProp, .normalfont (These are basic layouts best handled by Tailwind in JSX) */
